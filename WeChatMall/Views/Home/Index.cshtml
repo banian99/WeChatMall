@@ -1,0 +1,201 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Notices/_Layout.cshtml";
+}
+@using Shop.Model;
+<!--搜索栏-->
+@{ Html.RenderAction("Search", "Home");}
+<!--banner satart-->
+<div class="swiper-container index_banner">
+    <div class="swiper-wrapper">
+        @foreach (Banner item in ViewBag.Banner as List<Banner>)
+        {
+            <div class="swiper-slide"><a><img src="~/Common/images/@item.BImage" alt=""></a></div>
+        }
+        @*<div class="swiper-slide"><a><img src="~/Common/images/index_banner.jpg" alt=""></a></div>
+        <div class="swiper-slide"><a><img src="~/Common/images/index_img01.jpg" alt=""></a></div>
+        <div class="swiper-slide"><a><img src="~/Common/images/index_img03.jpg" alt=""></a></div>*@
+    </div>
+    <div class="swiper-pagination swiper-index"></div>
+</div>
+<script>
+	var swiper1 = new Swiper('.index_banner', {
+		pagination: '.swiper-index',
+		paginationClickable: true,
+		loop: true,
+		autoplay: 4000,
+	});
+</script>
+
+    <!--banner over-->
+    <div class="index_knowledge">
+        <img src="~/Common/images/icon_0902.png">
+        <div class="swiper-container dlist">
+            <div class="swiper-wrapper">
+                @foreach (Notice item in ViewBag.Notice as List<Notice>)
+                {
+                    <a class="swiper-slide" href="~/Notice/Index"><i>最热</i>@item.NTitle</a>
+                }
+                @*<a class="swiper-slide" href="gonggao_xq.html"><i>最新</i>one冬虫夏草又名虫草，是我国民间惯用的一种名贵滋补...</a>
+                <a class="swiper-slide" href="gonggao_xq.html"><i>最热</i>two冬虫夏草又名虫草，是我国民间惯用的一种名贵滋补...</a>
+                <a class="swiper-slide" href="gonggao_xq.html"><i>最新</i>three冬虫夏草又名虫草，是我国民间惯用的一种名贵滋补...</a>*@
+        </div>
+    </div>
+</div>
+<script>
+  var swiper1 = new Swiper('.dlist', {
+    loop: true,
+    autoplay: 4000,
+    direction : 'vertical'
+  });
+</script>
+<script src="~/Common/js/jquery-1.8.0.js"></script>
+<div class="index_main">
+    <p class="index_mtitle"> 
+        <a class="on" href="#" id="btn_one">热销</a> 
+        <a href="#" id="btn_two">推荐</a>
+        <a href="#" id="btn_tress">最新</a>
+    </p>
+    <ul id="Re_xiao" style="display:block">
+        @foreach (product item in ViewBag.Product as List<product>)
+        {
+            <li>
+                <a href="product_xq.html"><img src="~/Common/images/@item.PImages"></a>
+                <div class="product_text">
+                    <h2>
+                        <p>@item.PName</p>
+                        <span><img src="~/Common/images/icon_06.png"><img src="~/Common/images/icon_06.png"><img src="~/Common/images/icon_06.png"><img src="~/Common/images/icon_06.png"><img src="~/Common/images/icon_07.png"></span>
+                    </h2>
+                    <p>@item.PDescribe</p>
+                    <h3>
+                        <p><i>￥</i><b>@item.Price</b><span>特级</span><span>甄选</span></p>
+                        <a href="product_xq.html">立即购买</a>
+                    </h3>
+                </div>
+            </li>
+        }
+    </ul>
+    <ul id="Tui_jian" style="display:none">
+        @foreach (product item in ViewBag.Product as List<product>)
+        {
+            <li>
+                <a href="product_xq.html"><img src="~/Common/images/@item.PImages"></a>
+                <div class="product_text">
+                    <h2>
+                        <p>@item.PName</p>
+                        <span><img src="~/Common/images/icon_06.png"><img src="~/Common/images/icon_06.png"><img src="~/Common/images/icon_06.png"><img src="~/Common/images/icon_06.png"><img src="~/Common/images/icon_07.png"></span>
+                    </h2>
+                    <p>@item.PDescribe</p>
+                    <h3>
+                        <p><i>￥</i><b>@item.Price</b><span>特级</span><span>甄选</span></p>
+                        <a href="product_xq.html">立即购买</a>
+                    </h3>
+                </div>
+            </li>
+        }
+    </ul>
+    <ul id="Zui_xing" style="display:none">
+        @foreach (product item in ViewBag.NewTimeinfo as List<product>)
+        {
+            <li>
+                <a href="product_xq.html"><img src="~/Common/images/@item.PImages"></a>
+                <div class="product_text">
+                    <h2>
+                        <p>@item.PName</p>
+                        <span><img src="~/Common/images/icon_06.png"><img src="~/Common/images/icon_06.png"><img src="~/Common/images/icon_06.png"><img src="~/Common/images/icon_06.png"><img src="~/Common/images/icon_07.png"></span>
+                    </h2>
+                    <p>@item.PDescribe</p>
+                    <h3>
+                        <p><i>￥</i><b>@item.Price</b><span>@item.PTime</span><span>甄选</span></p>
+                        <a href="product_xq.html">立即购买</a>
+                    </h3>
+                </div>
+            </li>
+        }
+    </ul>
+    <script>
+        $(function () {
+            document.getElementById("btn_one").onclick = function () {
+                document.getElementById("Re_xiao").style.display = "block";
+                document.getElementById("Tui_jian").style.display = "none";
+                document.getElementById("Zui_xing").style.display = "none";
+                document.getElementById("btn_one").className = "on";
+                document.getElementById("btn_two").className = "";
+                document.getElementById("btn_tress").className = "";
+            }
+            document.getElementById("btn_two").onclick = function () {
+                document.getElementById("Re_xiao").style.display = "none";
+                document.getElementById("Tui_jian").style.display = "block";
+                document.getElementById("Zui_xing").style.display = "none";
+                document.getElementById("btn_one").className = "";
+                document.getElementById("btn_two").className = "on";
+                document.getElementById("btn_tress").className = "";
+            }
+            document.getElementById("btn_tress").onclick = function () {
+                document.getElementById("Re_xiao").style.display = "none";
+                document.getElementById("Tui_jian").style.display = "none";
+                document.getElementById("Zui_xing").style.display = "block";
+                document.getElementById("btn_one").className = "";
+                document.getElementById("btn_two").className = "";
+                document.getElementById("btn_tress").className = "on";
+            }
+
+        })
+    </script>
+
+        @*<li>
+            <a href="product_xq.html"><img src="~/Common/images/index_img01.jpg"></a>
+            <div class="product_text">
+                <h2>
+                    <p>特级云南冬虫夏草</p>
+                    <span><img src="~/Common/images/icon_06.png"><img src="~/Common/images/icon_06.png"><img src="~/Common/images/icon_06.png"><img src="~/Common/images/icon_06.png"><img src="~/Common/images/icon_07.png"></span>
+                </h2>
+                <p>冬虫夏草又名虫草，是我国民间惯用的一种名贵滋补药材，其营养成分高于人参，可入药，也可食用，是上乘的佳肴，具有很高的营养价值。</p>
+                <h3>
+                    <p><i>￥</i><b>180.00</b><span>特级</span><span>甄选</span></p>
+                    <a href="product_xq.html">立即购买</a>
+                </h3>
+            </div>
+        </li>
+        <li>
+            <a href="product_xq.html"><img src="~/Common/images/index_img02.jpg"></a>
+            <div class="product_text">
+                <h2>
+                    <p>特级云南冬虫夏草</p>
+                    <span><img src="~/Common/images/icon_06.png"><img src="~/Common/images/icon_06.png"><img src="~/Common/images/icon_06.png"><img src="~/Common/images/icon_06.png"><img src="~/Common/images/icon_07.png"></span>
+                </h2>
+                <p>冬虫夏草又名虫草，是我国民间惯用的一种名贵滋补药材，其营养成分高于人参，可入药，也可食用，是上乘的佳肴，具有很高的营养价值。</p>
+                <h3>
+                    <p><i>￥</i><b>180.00</b><span>特级</span><span>甄选</span></p>
+                    <a href="product_xq.html">立即购买</a>
+                </h3>
+            </div>
+        </li>
+        <li>
+            <a href="product_xq.html"><img src="~/Common/images/index_img03.jpg"></a>
+            <div class="product_text">
+                <h2>
+                    <p>特级云南冬虫夏草</p>
+                    <span><img src="~/Common/images/icon_06.png"><img src="~/Common/images/icon_06.png"><img src="~/Common/images/icon_06.png"><img src="~/Common/images/icon_06.png"><img src="~/Common/images/icon_07.png"></span>
+                </h2>
+                <p>冬虫夏草又名虫草，是我国民间惯用的一种名贵滋补药材，其营养成分高于人参，可入药，也可食用，是上乘的佳肴，具有很高的营养价值。</p>
+                <h3>
+                    <p><i>￥</i><b>180.00</b><span>特级</span><span>甄选</span></p>
+                    <a href="product_xq.html">立即购买</a>
+                </h3>
+            </div>
+        </li>*@
+  
+</div>
+<div class="index_icon">
+    <p>
+        <span><img src="~/Common/images/icon_01.png"><i>品质保证</i></span>
+        <span><img src="~/Common/images/icon_02.png"><i>送货保障</i></span>
+        <span><img src="~/Common/images/icon_003.png"><i>7天包换</i></span>
+        <span><img src="~/Common/images/icon_04.png"><i>质量保障</i></span>
+    </p>
+</div>
+
+
+
