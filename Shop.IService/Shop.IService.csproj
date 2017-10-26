@@ -85,6 +85,7 @@
     <Compile Include="INoticeService.cs" />
     <Compile Include="IProductService.cs" />
     <Compile Include="IProductSortService.cs" />
+    <Compile Include="IShopCartService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

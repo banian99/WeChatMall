@@ -94,6 +94,7 @@
     <Compile Include="INoticeRepository.cs" />
     <Compile Include="IProductRepository.cs" />
     <Compile Include="IProductSortRepository.cs" />
+    <Compile Include="IShopCartRepository.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

@@ -26,7 +26,7 @@ namespace WeChatMall.Controllers
         public ActionResult Fleat()
         {
 
-              id = Request["mydata"]; ;
+              id = Request["mydata"]; 
             if (id == null)
             {
 

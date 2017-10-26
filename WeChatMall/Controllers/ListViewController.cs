@@ -15,8 +15,12 @@ namespace WeChatMall.Controllers
         {
             
             string ProId = id.ToString();
+            //查询所有产品
             var Product_Info = ProductService.GetEntities(y => y.ProductSortId == ProId);
             ViewBag._Products = Product_Info.ToList();
+            //根据时间排序
+            var TimeProduct = ProductService.GetEntities(k => k.ProductSortId == ProId).OrderByDescending(x => x.PTime).Take(3);
+            ViewBag.Timeinfo = TimeProduct.ToList();
             return View();
         }
     }

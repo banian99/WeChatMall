@@ -61,7 +61,7 @@
         @foreach (product item in ViewBag.Product as List<product>)
         {
             <li>
-                <a href="product_xq.html"><img src="~/Common/images/@item.PImages"></a>
+                <a href="product_xq.html"><img src="~/Common/images/@item.PImages.Split(',')[0]"></a>
                 <div class="product_text">
                     <h2>
                         <p>@item.PName</p>
@@ -80,7 +80,7 @@
         @foreach (product item in ViewBag.Product as List<product>)
         {
             <li>
-                <a href="product_xq.html"><img src="~/Common/images/@item.PImages"></a>
+                <a href="product_xq.html"><img src="~/Common/images/@item.PImages.Split(',')[0]"></a>
                 <div class="product_text">
                     <h2>
                         <p>@item.PName</p>
@@ -99,7 +99,7 @@
         @foreach (product item in ViewBag.NewTimeinfo as List<product>)
         {
             <li>
-                <a href="product_xq.html"><img src="~/Common/images/@item.PImages"></a>
+                <a href="product_xq.html"><img src="~/Common/images/@item.PImages.Split(',')[0]"></a>
                 <div class="product_text">
                     <h2>
                         <p>@item.PName</p>

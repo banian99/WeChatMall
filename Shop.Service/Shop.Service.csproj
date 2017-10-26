@@ -46,6 +46,7 @@
     <Compile Include="ProductService.cs" />
     <Compile Include="ProductSortService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ShopCartService.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Shop.IRepository\Shop.IRepository.csproj">

@@ -23,24 +23,144 @@
     <script src="~/Common/js/base.js" type="text/javascript"></script>
     <script src="~/Common/js/swiper.min.js" type="text/javascript"></script>
     <script src="~/Common/js/index.js" type="text/javascript"></script>
+    <script src="~/Common/js/jquery-1.8.0.js"></script>
+    @*<script>
+        $(function () {
+            $(".btn_List").click(function () {
+                var myID = $(this).attr("dataid");
+                //alert(myID);
+                $.ajax({
+                    type: "post",
+                    url: "@Url.Action("Index","Concent")",
+                    data: { "myID": myID },
+                    success: function (data) {
+                        //$("#myconcent").html(data);
+                        alert(data);
+                    }
+                })
+            })
+        })
+    </script>*@
 </head>
+
 <body>
    @{ Html.RenderAction("ProSearch", "ProductSort");}
 <div class="search_list">
-    <p><a class="on"><span>综合</span></a><a><span>销量</span></a><a><span>评价</span></a><a><span class="bg">价格</span></a></p>
-    <ul>
+    <p><a class="on" id="btn_result"><span >综合</span></a><a id="btn_liang"><span >销量</span></a><a id="btn_ping"><span >评价</span></a><a id="btn_price"><span class="bg" >价格</span></a></p>
+    <ul id="_result" style="display:block">
+        @foreach (product item in ViewBag._Products as List<product>)
+            {
+            <li>
+                <a href="~/Concent/Index?id=@item.PCode" class="btn_List" dataid="@item.PCode">
+                    
+                    
+                     <img src="~/Common/images/@item.PImages.Split(',')[0]">
+                    <div class="search_item">
+                       
+                            <p>@item.PName</p>
+                           
+                            <h2><i>￥</i><b>@item.Price</b><span>@item.PTime</span></h2>
+</div>
+                </a>
+            </li>
+           
+        }
+        </ul>
+   
+    <ul id="_liang" style="display:none">
         @foreach (product item in ViewBag._Products as List<product>)
             {
             <li>
                 <a href="product_xq.html">
-                    <img src="~/Common/images/@item.PImages">
+                    <img src="~/Common/images/@item.PImages.Split(',')[0]">
                     <div class="search_item">
-                        <a href="~/"<p>@item.PName</p>
+                        <p>@item.PName</p>
                         <h2><i>￥</i><b>@item.Price</b><span>@item.PTime</span></h2>
                     </div>
                 </a>
             </li>
+
         }
+    </ul>
+    <ul id="_ping" style="display:none">
+        @foreach (product item in ViewBag.Timeinfo as List<product>)
+            {
+            <li>
+                <a href="product_xq.html">
+                    <img src="~/Common/images/@item.PImages.Split(',')[0]">
+                    <div class="search_item">
+                        <p>@item.PName</p>
+                        <h2><i>￥</i><b>@item.Price</b><span>@item.PTime</span></h2>
+                    </div>
+                </a>
+            </li>
+
+        }
+    </ul>
+    <ul id="_price" style="display:none">
+        @foreach (product item in ViewBag._Products as List<product>)
+            {
+            <li>
+                <a href="product_xq.html">
+                    <img src="~/Common/images/@item.PImages.Split(',')[0]">
+                    <div class="search_item">
+                        <p>@item.PName</p>
+                        <h2><i>￥</i><b>@item.Price</b><span>@item.PTime</span></h2>
+                    </div>
+                </a>
+            </li>
+
+        }
+    </ul>
+
+        <script>
+            $(function () {
+                document.getElementById("btn_result").onclick = function () {
+                    document.getElementById("_result").style.display = "block";
+                    document.getElementById("_liang").style.display = "none";
+                    document.getElementById("_ping").style.display = "none";
+                    document.getElementById("_price").style.display = "none";
+                    document.getElementById("btn_result").className = "on";
+                    document.getElementById("btn_liang").className = "";
+                    document.getElementById("btn_ping").className = "";
+                    document.getElementById("btn_price").className = "";
+
+                }
+                document.getElementById("btn_liang").onclick = function () {
+                    document.getElementById("_result").style.display = "none";
+                    document.getElementById("_liang").style.display = "block";
+                    document.getElementById("_ping").style.display = "none";
+                    document.getElementById("_price").style.display = "none";
+                    document.getElementById("btn_result").className = "";
+                    document.getElementById("btn_liang").className = "on";
+                    document.getElementById("btn_ping").className = "";
+                    document.getElementById("btn_price").className = "";
+
+                }
+                document.getElementById("btn_ping").onclick = function () {
+                    document.getElementById("_result").style.display = "none";
+                    document.getElementById("_liang").style.display = "none";
+                    document.getElementById("_ping").style.display = "block";
+                    document.getElementById("_price").style.display = "none";
+                    document.getElementById("btn_result").className = "";
+                    document.getElementById("btn_liang").className = "";
+                    document.getElementById("btn_ping").className = "on";
+                    document.getElementById("btn_price").className = "";
+
+                }
+                document.getElementById("btn_price").onclick = function () {
+                    document.getElementById("_result").style.display = "none";
+                    document.getElementById("_liang").style.display = "none";
+                    document.getElementById("_ping").style.display = "none";
+                    document.getElementById("_price").style.display = "block";
+                    document.getElementById("btn_result").className = "";
+                    document.getElementById("btn_liang").className = "";
+                    document.getElementById("btn_ping").className = "";
+                    document.getElementById("btn_price").className = "on";
+
+                }
+            })
+            </script>
         @*<li>
                 <a href="product_xq.html">
                     <img src="~/Common/images/img_010.jpg">
@@ -95,7 +215,7 @@
                     </div>
                 </a>
             </li>*@
-    </ul>
+   
 </div>
 
 <script>
@@ -104,6 +224,6 @@
         $(this).height(w+"px");
     })
 
-</script>
+        </script>
 </body>
 </html>

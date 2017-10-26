@@ -2,10 +2,11 @@
 @{
     Layout = null;
 }
-
+@using Shop.Model
 <!DOCTYPE html>
 
 <html>
+
 <head>
     @*<meta name="viewport" content="width=device-width" />
         <title>Index</title>*@
@@ -16,25 +17,42 @@
     <meta name="keywords" content="HTML,CSS,JavaScript">
     <meta content="telephone=no" name="format-detection">
     <title>友意健康</title>
-    @*<link href="~/Common/css/Cbase.css" type="text/css" rel="stylesheet">
-    <link href="~/Common/css/index.css" type="text/css" rel="stylesheet">
-    <link href="~/Common/css/swiper.min.css" type="text/css" rel="stylesheet">
-    <script src="~/Common/js/jquery-1.7.2.min.js" type="text/javascript"></script>
-    <script src="~/Common/js/base.js" type="text/javascript"></script>
-    <script src="~/Common/js/swiper.min.js" type="text/javascript"></script>
-    <script src="~/Common/js/index.js" type="text/javascript"></script>
-    <script src="~/Common/js/timer.js"></script>
+    <link href="/Common/css/Cbase.css" type="text/css" rel="stylesheet">
+    <link href="/Common/css/index.css" type="text/css" rel="stylesheet">
+    <link href="/Common/css/swiper.min.css" type="text/css" rel="stylesheet">
+    <script src="/Common/js/jquery-1.7.2.min.js" type="text/javascript"></script>
+    <script src="/Common/js/base.js" type="text/javascript"></script>
+    <script src="/Common/js/swiper.min.js" type="text/javascript"></script>
+    <script src="/Common/js/index.js" type="text/javascript"></script>
+    <script src="/Common/js/timer.js"></script>
     <script>
 	$(function(){
 		$(".timer").timerInit();
 	});
-    </script>*@
+    </script>
 
+    <script>
+        $(function () {
+            $("#btn_click").click(function () {
+                var MyId = "@Request["id"]";
+                //alert(MyId);
+                $.ajax({
+                    type: "post",
+                    url: "@Url.Action("AddProduct","Concent")",
+                    data: {"ProID":MyId,"Pnum":$("#num").val()},
+                    success:function(data){
+                        alert("已加入购物车");
+                    }
+                })
+
+            })
+        })
+    </script>
 </head>
 <body class="modularbox">
     <!--ftop开始-->
     <div class="ftop">
-        <a class="back" onClick="javascript:history.back(-1);"><img src="~/Common/images/icon_03.png"></a>
+        <a class="back" onClick="javascript:history.back(-1);"><img src="/Common/images/icon_03.png"></a>
         <h2>产品详情</h2>
         <a style="color:#000" class="comea">分享有礼</a>
         <div style="clear: both;"></div>
@@ -42,23 +60,34 @@
     <!--ftop开始-->
     <!---banner start--->
     <div class="product_box">
+        
         <div class="swiper-container product_details">
-            <div class="swiper-wrapper">
-                <div class="swiper-slide"><a><img src="~/Common/images/img_01.jpg" alt=""></a></div>
-                <div class="swiper-slide"><a><img src="~/Common/images/img_03.jpg" alt=""></a></div>
-                <div class="swiper-slide"><a><img src="~/Common/images/img_08.jpg" alt=""></a></div>
+            <div class="swiper-wrapper" id="myconcent">
+                @foreach (product item in ViewBag.ProductItem as List<product>)
+                {
+                     var Myimg = item.PImages.Split(',');
+
+                     foreach (var itemm in Myimg)
+                    {
+                        <div class="swiper-slide"><a><img src="~/Common/images/@itemm" alt=""></a></div>
+                    }
+
+                }
+                @*<div class="swiper-slide"><a><img src="/Common/images/img_01.jpg" alt=""></a></div>
+                <div class="swiper-slide"><a><img src="/Common/images/img_03.jpg" alt=""></a></div>
+                <div class="swiper-slide"><a><img src="/Common/images/img_08.jpg" alt=""></a></div>*@
             </div>
-            <img src="~/Common/images/icon_034.png" />
+           
         </div>
         <div class="pro_text">
             <h2>
-                <p>特级云南冬虫夏草冬虫夏草又名虫草冬虫夏草又名虫草</p>
-                <span><img src="~/Common/images/icon_06.png"><img src="~/Common/images/icon_06.png"><img src="~/Common/images/icon_06.png"><img src="~/Common/images/icon_07.png"><img src="~/Common/images/icon_07.png"></span>
+                <p>@Model.PName</p>
+                <span><img src="/Common/images/icon_06.png"><img src="/Common/images/icon_06.png"><img src="/Common/images/icon_06.png"><img src="/Common/images/icon_07.png"><img src="/Common/images/icon_07.png"></span>
             </h2>
-            <img src="~/Common/images/icon_06.png" />
-            <p>冬虫夏草又名虫草，是我国民间惯用的一种名贵滋补药材，其营养成分高于人参，可入药，也可食用，是上乘的佳肴，具有很高的营养价值。</p>
+           
+            <p>@Model.PDescribe</p>
             <div class="pro_det">
-                <h3><i>￥</i><b>188.00</b><span>特级</span><span>甄选</span></h3>
+                <h3><i>￥</i><b>@Model.Price</b><span>特级</span><span>甄选</span></h3>
                 <p><span>库存：616 </span><i></i><span>月销量：1988笔</span></p>
             </div>
         </div>
@@ -72,8 +101,8 @@
 	});
     </script>
     <!---banner over--->
-    @*<div class="pro_standard">
-        <h2><span>选择商品规格/口味</span><img src="~/Common/images/icon_015.png"></h2>
+    <div class="pro_standard">
+        <h2><span>选择商品规格/口味</span><img src="/Common/images/icon_015.png"></h2>
         <div class="pro_stand">
             <dl>
                 <dt>食品口味</dt>
@@ -98,7 +127,7 @@
                 <dd>香辣味</dd>
             </dl>
         </div>
-        <div class="shu"><i>购买数量</i><span class="jia"><img src="~/Common/images/icon_017.png"></span><input class="shopcart-td-num" type="text" value="1" /><span class="jian"><img src="~/Common/images/icon_016.png"></span></div>
+        <div class="shu"><i>购买数量</i><span class="jia"><img src="/Common/images/icon_017.png"></span><input class="shopcart-td-num" type="text" value="1"  id="num"/><span class="jian"><img src="/Common/images/icon_016.png"></span></div>
     </div>
     <script>
 	$(function(){
@@ -147,41 +176,51 @@
     <div class="pro_description modular">
         <h2><span>更多图片</span></h2>
         <div class="tu_pian">
-            <img src="~/Common/images/img_04.jpg"><img src="~/Common/images/img_07.jpg"><img src="~/Common/images/img_08.jpg">
+            @foreach (product item in ViewBag.ProductItem as List<product>)
+            {
+                var Myimg = item.PImages.Split(',');
+
+                foreach (var itemm in Myimg)
+                {
+                    <img src="~/Common/images/@itemm" alt="">
+                }
+
+            }
+            @*<img src="/Common/images/img_04.jpg"><img src="/Common/images/img_07.jpg"><img src="/Common/images/img_08.jpg">*@
         </div>
     </div>
     <div class="pro_description modular">
         <h2><span>用户评价</span></h2>
         <div class="pingjia">
             <div class="pingjia_item">
-                <img src="~/Common/images/img_06.jpg"><i>李易峰</i><span>06-21 23:22</span>
+                <img src="/Common/images/img_06.jpg"><i>李易峰</i><span>06-21 23:22</span>
                 <div class="ping_text">
                     <p>冬虫夏草为虫体与菌座相冬虫夏草为虫体与菌座相连而成冬虫夏草为虫体与菌座相连而成冬虫夏草为虫体与菌座相连而成连而成，难得的真品，收到货了，确实不错！！</p>
                     <div class="wrapper">
-                        <div class="image"><a rel="gallery" href="~/Common/images/img_01.jpg"><img src="~/Common/images/img_02.jpg"></a></div>
-                        <div class="image"><a rel="gallery" href="~/Common/images/img_01.jpg"><img src="~/Common/images/img_02.jpg"></a></div>
+                        <div class="image"><a rel="gallery" href="/Common/images/img_01.jpg"><img src="/Common/images/img_02.jpg"></a></div>
+                        <div class="image"><a rel="gallery" href="/Common/images/img_01.jpg"><img src="/Common/images/img_02.jpg"></a></div>
                     </div>
                 </div>
             </div>
             <div class="pingjia_item">
-                <img src="~/Common/images/img_06.jpg"><i>李易峰</i><span>06-21 23:22</span>
+                <img src="/Common/images/img_06.jpg"><i>李易峰</i><span>06-21 23:22</span>
                 <div class="ping_text">
                     <p>冬虫夏草为虫体与菌座相冬虫夏草为虫体与菌座相连而成冬虫夏草为虫体与菌座相连而成冬虫夏草为虫体与菌座相连而成连而成，难得的真品，收到货了，确实不错！！</p>
                 </div>
             </div>
             <div class="pingjia_item">
-                <img src="~/Common/images/img_06.jpg"><i>李易峰</i><span>06-21 23:22</span>
+                <img src="/Common/images/img_06.jpg"><i>李易峰</i><span>06-21 23:22</span>
                 <div class="ping_text">
                     <p>冬虫夏草为虫体与菌座相冬虫夏草为虫体与菌座相连而成冬虫夏草为虫体与菌座相连而成冬虫夏草为虫体与菌座相连而成连而成，难得的真品，收到货了，确实不错！！</p>
                     <div class="wrapper">
-                        <div class="image"><a rel="gallery" href="~/Common/images/img_01.jpg"><img src="~/Common/images/img_02.jpg"></a></div>
-                        <div class="image"><a rel="gallery" href="~/Common/images/img_01.jpg"><img src="~/Common/images/img_02.jpg"></a></div>
+                        <div class="image"><a rel="gallery" href="/Common/images/img_01.jpg"><img src="/Common/images/img_02.jpg"></a></div>
+                        <div class="image"><a rel="gallery" href="/Common/images/img_01.jpg"><img src="/Common/images/img_02.jpg"></a></div>
                     </div>
                 </div>
             </div>
         </div>
-        <link href="~/Common/css/fullscreenstyle.css" type="text/css" rel="stylesheet" />
-        <script type="text/javascript" src="~/Common/js/jquery.fullscreenslides.js"></script>
+        <link href="/Common/css/fullscreenstyle.css" type="text/css" rel="stylesheet" />
+        <script type="text/javascript" src="/Common/js/jquery.fullscreenslides.js"></script>
         <script type="text/javascript">
 $(function(){
 	$('.image img').fullscreenslides();
@@ -229,7 +268,7 @@ $(function(){
         </script>
         <div class="fixft pro_bottom">
             <span><b><a target="_blank" href="http://wpa.qq.com/msgrd?v=3&uin=1690704269&site=qq&menu=yes">客服</a></b><b>收藏</b></span>
-            <p><a>加入购物车</a><a href="confirm_order.html">立即购买</a></p>
+            <p><a id="btn_click">加入购物车</a><a href="confirm_order.html">立即购买</a></p>
         </div>
 
         <div id="box" class="sidebar">
@@ -245,8 +284,8 @@ $(function(){
 
         <!--提醒分享-->
         <div class="sharetip">
-            <img src="~/Common/images/sharetip_06.png" alt="">
-            <a><img src="~/Common/images/sharetip_09.png" alt=""></a>
+            <img src="/Common/images/sharetip_06.png" alt="">
+            <a><img src="/Common/images/sharetip_09.png" alt=""></a>
         </div>
         <!--提醒分享-->
 
@@ -306,6 +345,6 @@ $(document).scroll(function() {
 		}
 	}
 });
-        </script>*@
+        </script>
 </body>
 </html>
