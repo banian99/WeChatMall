@@ -6,6 +6,29 @@
 @using Shop.Model
 @using Shop.IService
 <!--ftop开始-->
+<script src="~/Common/js/jquery-1.8.0.js"></script>
+<script>
+    //单条删除
+    $(function () {
+        $(".delete").click(function () {
+            var Carid = $(this).attr("dataid");
+            $.ajax({
+                type: "post",
+                url: "@Url.Action("DeleteFrist","ShopCard")",
+                data: { "CartId": Carid },
+                success: function () {                    
+                }                
+            })
+            $(this).parent().remove();
+
+        })
+        $("btn_ON").click(function () {
+            $("label input").each(function () {
+                $(this).attr("class", "on");
+            })
+        })
+    })
+</script>
 <div class="ftop">
     <h3 style=" text-align:center; font-size:18px;">购物车</h3>
     <a style="position:absolute; top:4px; font-size:14px; right:15px; color:#333" class="all">编辑</a>
@@ -23,70 +46,17 @@
                     <div class="shop_car">
                         <a href="product_xq.html">@concent.PName</a>
                         @*<span>规格：500g/袋</span>*@
-                        <div class="shu"><span class="jian"><img src="~/Common/images/icon_016.png"></span><input class="shopcart-td-num" type="text" value="1" /><span class="jia"><img src="~/Common/images/icon_017.png"></span><a><i>￥</i><b>@concent.Price</b></a></div>
+                        
+                        <div class="shu"><span class="jian"><img src="~/Common/images/icon_016.png"></span><input class="shopcart-td-num" type="text" value="@item.SNum" /><span class="jia"><img src="~/Common/images/icon_017.png"></span><a><i>￥</i><b>@concent.Price</b></a></div>
                     </div>
-                    <img class="delete" src="~/Common/images/icon_030.png">
+                    <img class="delete" dataid="@item.ScartId" src="~/Common/images/icon_030.png">
                 </li>
             }
 
-        }
-        @*<li>
-            <p><label><input type="checkbox"></label><a href="product_xq.html"><img src="~/Common/images/img_01.jpg"></a></p>
-            <div class="shop_car">
-                <a href="product_xq.html">高档石斛高档石斛高档石斛高档石斛高档石斛高档石斛高档石斛高档石斛</a>
-                <span>规格：500g/袋</span>
-                <div class="shu"><span class="jian"><img src="~/Common/images/icon_016.png"></span><input class="shopcart-td-num" type="text" value="1" /><span class="jia"><img src="~/Common/images/icon_017.png"></span><a><i>￥</i><b>185.00</b></a></div>
-            </div>
-            <img class="delete" src="~/Common/images/icon_030.png">
-        </li>
-        <li>
-            <p><label><input type="checkbox"></label><a href="product_xq.html"><img src="~/Common/images/img_013.jpg"></a></p>
-            <div class="shop_car">
-                <a href="product_xq.html">高档石斛高档石斛高档石斛高档石斛高档石斛高档石斛高档石斛高档石斛</a>
-                <span>规格：500g/袋</span>
-                <div class="shu"><span class="jian"><img src="~/Common/images/icon_016.png"></span><input class="shopcart-td-num" type="text" value="1" /><span class="jia"><img src="~/Common/images/icon_017.png"></span><a><i>￥</i><b>185.00</b></a></div>
-            </div>
-            <img class="delete" src="~/Common/images/icon_030.png">
-        </li>
-        <li>
-            <p><label><input type="checkbox"></label><a href="product_xq.html"><img src="~/Common/images/img_013.jpg"></a></p>
-            <div class="shop_car">
-                <a href="product_xq.html">高档石斛高档石斛高档石斛高档石斛高档石斛高档石斛高档石斛高档石斛</a>
-                <span>规格：500g/袋</span>
-                <div class="shu"><span class="jian"><img src="~/Common/images/icon_016.png"></span><input class="shopcart-td-num" type="text" value="1" /><span class="jia"><img src="~/Common/images/icon_017.png"></span><a><i>￥</i><b>185.00</b></a></div>
-            </div>
-            <img class="delete" src="~/Common/images/icon_030.png">
-        </li>
-        <li>
-            <p><label><input type="checkbox"></label><a href="product_xq.html"><img src="~/Common/images/img_013.jpg"></a></p>
-            <div class="shop_car">
-                <a href="product_xq.html">高档石斛高档石斛高档石斛高档石斛高档石斛高档石斛高档石斛高档石斛</a>
-                <span>规格：500g/袋</span>
-                <div class="shu"><span class="jian"><img src="~/Common/images/icon_016.png"></span><input class="shopcart-td-num" type="text" value="1" /><span class="jia"><img src="~/Common/images/icon_017.png"></span><a><i>￥</i><b>185.00</b></a></div>
-            </div>
-            <img class="delete" src="~/Common/images/icon_030.png">
-        </li>
-        <li>
-            <p><label><input type="checkbox"></label><a href="product_xq.html"><img src="~/Common/images/img_013.jpg"></a></p>
-            <div class="shop_car">
-                <a href="product_xq.html">高档石斛高档石斛高档石斛高档石斛高档石斛高档石斛高档石斛高档石斛</a>
-                <span>规格：500g/袋</span>
-                <div class="shu"><span class="jian"><img src="~/Common/images/icon_016.png"></span><input class="shopcart-td-num" type="text" value="1" /><span class="jia"><img src="~/Common/images/icon_017.png"></span><a><i>￥</i><b>185.00</b></a></div>
-            </div>
-            <img class="delete" src="~/Common/images/icon_030.png">
-        </li>
-        <li>
-            <p><label><input type="checkbox"></label><a href="product_xq.html"><img src="~/Common/images/img_013.jpg"></a></p>
-            <div class="shop_car">
-                <a href="product_xq.html">高档石斛高档石斛高档石斛高档石斛高档石斛高档石斛高档石斛高档石斛</a>
-                <span>规格：500g/袋</span>
-                <div class="shu"><span class="jian"><img src="~/Common/images/icon_016.png"></span><input class="shopcart-td-num" type="text" value="1" /><span class="jia"><img src="~/Common/images/icon_017.png"></span><a><i>￥</i><b>185.00</b></a></div>
-            </div>
-            <img class="delete" src="~/Common/images/icon_030.png">
-        </li>*@
+        }      
     </ul>
     <div class="pay">
-        <label><input type="checkbox"><span>全选</span></label>
+        <label><input type="checkbox" id="btn_ON"><span>全选</span></label>
         <div class="pay_right">
             <p><span>合计：<b>￥898.50</b></span><i>不含运费</i></p>
             <a href="confirm_order.html">结算（5）</a>
@@ -126,21 +96,21 @@
 			return false
         })
 
-		$("label input").click(function(){
-			$(this).parent().toggleClass("on");
-			var flag=1;
-			$("label input").each(function(){
-				if(!this.checked){
-					flag=0;
-				}
-			})
-			if(flag==1){
-				$(".car_pay span").addClass("on")
-			}
-			else{
-				$(".car_pay span").removeClass("on")
-			}
-		})
+		//$("label input").click(function(){
+		//	$(this).parent().toggleClass("on");
+		//	var flag=1;
+		//	$("label input").each(function(){
+		//		if(!this.checked){
+		//			flag=0;
+		//		}
+		//	})
+		//	if(flag==1){
+		//		$(".car_pay span").addClass("on")
+		//	}
+		//	else{
+		//		$(".car_pay span").removeClass("on")
+		//	}
+		//})
 		$(".pay label span").click(function(){
 			if($(this).hasClass("on")){
 				$(this).removeClass("on")
@@ -180,12 +150,12 @@
 
 
 <!--fixft开始-->
-<div class="fixft">
+@*<div class="fixft">
     <a href="index.html"><span><img src="~/Common/images/navicon_45.png" class="img1"><img src="~/Common/images/navicon_28.png" class="img2"></span> <i>首页</i></a>
     <a href="publish.html"><span><img src="~/Common/images/navicon_48.png" class="img1"><img src="~/Common/images/navicon_30.png" class="img2"></span> <i>分类</i></a>
     <a href="shopcar.html" class="current"><span><img src="~/Common/images/navicon_50.png" class="img1"><img src="~/Common/images/navicon_32.png" class="img2"><em>12</em></span> <i>购物车</i></a>
     <a href="center.html"><span><img src="~/Common/images/navicon_42.png" class="img1"><img src="~/Common/images/navicon_35.png" class="img2"></span> <i>我的</i></a>
-</div>
+</div>*@
 <!--fixft结束-->
 
 

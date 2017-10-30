@@ -20,5 +20,15 @@ namespace WeChatMall.Controllers
             ViewBag.ProductInfo = ProductService;
             return View();
         }
+        public ActionResult DeleteFrist()
+        {
+            //删除单条购物车
+            ShopCart sc = new ShopCart()
+            {
+                ScartId = int.Parse(Request["CartId"]),
+            };
+            ShopCartService.Remove(sc);
+            return RedirectToAction("Index");
+        }
     }
 }

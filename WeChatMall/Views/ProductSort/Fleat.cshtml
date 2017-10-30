@@ -22,7 +22,7 @@
         @foreach (ProductSort item in ViewBag.ProductSortText as List<ProductSort>)
         {
             <li>
-                <a class="imga" ><img src="~/Common/images/img_012.jpg"></a>
+                <a class="imga" ><img src="~/Common/images/@item.ProImg"></a>
                 <a class="txta" >
                    <a href="~/ListView/Index/@item.ProSorID" style="color:black;"><span class="_bgbtn" dataid="@item.ProSorID">@item.ProName</span></a> 
                     @*<i>冬虫夏草有负性频率、降低心肌耗氧量、改善心肌缺血、抗血小板聚集和抗心律失常等作用。虫草醇提取物对急性病毒性心肌炎有明显保护作用。</i>*@

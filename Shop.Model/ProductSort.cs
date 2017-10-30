@@ -25,6 +25,9 @@ namespace Shop.Model
         [StringLength(50)]
         public string ProName { get; set; }
 
+        [StringLength(500)]
+        public string ProImg { get; set; }
+
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<product> product { get; set; }
     }

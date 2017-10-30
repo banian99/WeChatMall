@@ -46,7 +46,7 @@ namespace Shop.Model
         [StringLength(20)]
         public string PIsPackage { get; set; }
 
-        public DateTime? PTime { get; set; }
+        public DateTime PTime { get; set; }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Favorite> Favorite { get; set; }

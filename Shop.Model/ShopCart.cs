@@ -15,8 +15,7 @@ namespace Shop.Model
         [StringLength(50)]
         public string SPcode { get; set; }
 
-        [StringLength(50)]
-        public string SNum { get; set; }
+        public int? SNum { get; set; }
 
         public int? SCid { get; set; }
 

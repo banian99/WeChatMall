@@ -35,15 +35,17 @@
         $(function () {
             $("#btn_click").click(function () {
                 var MyId = "@Request["id"]";
-                //alert(MyId);
+                alert(MyId);
                 $.ajax({
                     type: "post",
                     url: "@Url.Action("AddProduct","Concent")",
                     data: {"ProID":MyId,"Pnum":$("#num").val()},
                     success:function(data){
-                        alert("已加入购物车");
+                        alert(data);
                     }
+                   
                 })
+                //alert("已加入购物车");
 
             })
         })

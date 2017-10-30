@@ -20,22 +20,45 @@ namespace WeChatMall.Controllers
             var ProductResult = ProductService.GetEntity(x => x.PCode == id);
             var ProductResultM = ProductService.GetEntities(x => x.PCode == id);
             ViewBag.ProductItem = ProductResultM.ToList();
-            Session["Product"]= ProductResultM.ToList();
+           
             return View(ProductResult);
         }
         public ActionResult AddProduct()
         {
             //添加购物车
             var ProductID = Request["ProID"]; //商品id
-            var ProductNum = Request["Pnum"]; //商品数量
-            var ProductEnum = ShopCartService.GetEntities(x => true);
-            var MyProduct = ProductEnum.FirstOrDefault(x => true);
-            MyProduct.SPcode = ProductID;
-            MyProduct.SNum = ProductNum;
-            ShopCartService.Add(MyProduct);
-        
-            return RedirectToAction("Index");
+            int ProductNum = int.Parse(Request["Pnum"]); //商品数量
+            //先查询购物车
+            var    ProductEnum = ShopCartService.GetEntities(x => x.SPcode==ProductID);
+            //然后查询购物车属性
+           
+            var ProductResult = ProductEnum.FirstOrDefault(x => true);
+            
+            //调用属性
+            if (ProductEnum.Count() > 0)
+            {
+
+                ProductResult.SPcode = ProductID;
+                ProductResult.SNum = ProductResult.SNum + ProductNum;
+                ShopCartService.Modify(ProductResult);
+                return RedirectToAction("Index");
+            }
+            else
+            {
+                ShopCart sc = new ShopCart()
+                {
+                    SPcode = ProductID,
+                    SNum = ProductNum,
+                };
+                //ProductResult.SPcode = ProductID;
+                //ProductResult.SNum = ProductNum;
+                ShopCartService.Add(sc);
+                return RedirectToAction("Index");
+            }
+
+
+
         }
-      
+
     }
 }

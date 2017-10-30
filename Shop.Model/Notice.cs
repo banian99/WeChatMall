@@ -20,6 +20,7 @@ namespace Shop.Model
         [StringLength(500)]
         public string NContent { get; set; }
 
-        public DateTime? NTime { get; set; }
+        [DatabaseGenerated(DatabaseGeneratedOption.Computed)]
+        public DateTime NTime { get; set; }
     }
 }

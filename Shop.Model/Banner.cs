@@ -20,6 +20,7 @@ namespace Shop.Model
         [StringLength(500)]
         public string BLink { get; set; }
 
-        public DateTime? Btime { get; set; }
+        [DatabaseGenerated(DatabaseGeneratedOption.Computed)]
+        public DateTime Btime { get; set; }
     }
 }

@@ -103,7 +103,7 @@
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Shop.Model\Shop.Model.csproj">
-      <Project>{0907b27b-37e0-42a7-b685-2fcd61492534}</Project>
+      <Project>{6b5025dc-7c8d-40d2-ac54-25cb273a449a}</Project>
       <Name>Shop.Model</Name>
     </ProjectReference>
   </ItemGroup>

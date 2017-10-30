@@ -207,6 +207,9 @@
     <Content Include="Common\css\swiper.min.css" />
     <Content Include="Common\images\1470046370_wEBaYRWX.jpg" />
     <Content Include="Common\images\20120929140213_y5aXB.thumb.700_0.jpeg" />
+    <Content Include="Common\images\20130223094127_wUSSC.thumb.700_0.jpeg" />
+    <Content Include="Common\images\20140613094644_fZLmv.jpeg" />
+    <Content Include="Common\images\20150822123816_5cjkJ.jpeg" />
     <Content Include="Common\images\20150911225737_NtWeR.jpeg" />
     <Content Include="Common\images\bg.png" />
     <Content Include="Common\images\car.jpg" />
@@ -406,6 +409,7 @@
     <Content Include="bin\roslyn\VBCSCompiler.exe.config" />
     <Content Include="bin\WeChatMall.dll.config" />
     <Content Include="Views\ShopCard\Index.cshtml" />
+    <Content Include="Common\images\金山PDF转Word.lnk" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -427,7 +431,7 @@
       <Name>Shop.IService</Name>
     </ProjectReference>
     <ProjectReference Include="..\Shop.Model\Shop.Model.csproj">
-      <Project>{0907b27b-37e0-42a7-b685-2fcd61492534}</Project>
+      <Project>{6b5025dc-7c8d-40d2-ac54-25cb273a449a}</Project>
       <Name>Shop.Model</Name>
     </ProjectReference>
   </ItemGroup>
