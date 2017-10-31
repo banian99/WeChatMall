@@ -9,19 +9,33 @@
 <script src="~/Common/js/jquery-1.8.0.js"></script>
 <script>
     $(function () {
+        var id = $(".fen-nav ul li:eq(0) ").attr("data_id");
+        ajax(id);
         $(".bg_id").click(function () {
             //alert("测试");
             var Proid = $(this).attr("data_id");
             //alert(Proid);
-            $.ajax({
+            @*$.ajax({
                 type:"post",
                 url:"@Url.Action("Fleat", "ProductSort")",
                 data: { "mydata": Proid },
                 success: function (data) {
                     $("#Pro_UL").html(data);
                 }
-            })
+            })*@
+            ajax(Proid);
         })
+
+        function ajax(id) {
+            $.ajax({
+                type:"post",
+                url:"@Url.Action("Fleat", "ProductSort")",
+                data: { "mydata": id },
+            success: function (data) {
+                $("#Pro_UL").html(data);
+            }
+        })
+        }
         //$(document).on("click", ".bg_id", function () {
         //    //alert($(this).attr("data_id"));
         //    var proid = $(this).attr("data_id")

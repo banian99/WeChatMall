@@ -92,7 +92,20 @@
       <Private>True</Private>
     </Reference>
     <Reference Include="Microsoft.CSharp" />
+    <Reference Include="Senparc.Weixin, Version=4.17.1.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Senparc.Weixin.4.17.1\lib\net45\Senparc.Weixin.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Senparc.Weixin.MP, Version=14.8.3.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Senparc.Weixin.MP.14.8.3\lib\net45\Senparc.Weixin.MP.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Senparc.Weixin.MP.MvcExtension, Version=5.1.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Senparc.Weixin.MP.MVC.5.1.0-beta1\lib\net45\Senparc.Weixin.MP.MvcExtension.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="System.IO.Compression.FileSystem" />
+    <Reference Include="System.Net.Http" />
     <Reference Include="System.Numerics" />
     <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.Web.DynamicData" />
@@ -262,6 +275,7 @@
     <Content Include="Common\images\dengfukuan_07.png" />
     <Content Include="Common\images\dengfukuan_11.png" />
     <Content Include="Common\images\enter.png" />
+    <Content Include="Common\images\hdImg_ff365b7858d96ab1a4c153e890ba9a2715094149471.jpg" />
     <Content Include="Common\images\icon_003.png" />
     <Content Include="Common\images\icon_01.png" />
     <Content Include="Common\images\icon_010.png" />
@@ -369,7 +383,9 @@
     <Content Include="Global.asax" />
     <Content Include="scripts\ai.0.22.9-build00167.js" />
     <Content Include="scripts\ai.0.22.9-build00167.min.js" />
-    <Content Include="Web.config" />
+    <Content Include="Web.config">
+      <SubType>Designer</SubType>
+    </Content>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Start\AutofacConfig.cs" />
@@ -378,9 +394,12 @@
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ListViewController.cs" />
     <Compile Include="Controllers\NoticeController.cs" />
+    <Compile Include="Controllers\OAuthController.cs" />
     <Compile Include="Controllers\ProductSortController.cs" />
     <Compile Include="Controllers\SearchController.cs" />
     <Compile Include="Controllers\ShopCardController.cs" />
+    <Compile Include="Controllers\UserInfoController.cs" />
+    <Compile Include="Filters\OAuthAttribute.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -410,6 +429,8 @@
     <Content Include="bin\WeChatMall.dll.config" />
     <Content Include="Views\ShopCard\Index.cshtml" />
     <Content Include="Common\images\金山PDF转Word.lnk" />
+    <Content Include="Views\UserInfo\Index.cshtml" />
+    <Content Include="Views\OAuth\JsSdkConfig.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -434,6 +455,9 @@
       <Project>{6b5025dc-7c8d-40d2-ac54-25cb273a449a}</Project>
       <Name>Shop.Model</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadata Include="Service References\" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

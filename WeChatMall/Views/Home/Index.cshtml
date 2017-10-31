@@ -61,7 +61,7 @@
         @foreach (product item in ViewBag.Product as List<product>)
         {
             <li>
-                <a href="product_xq.html"><img src="~/Common/images/@item.PImages.Split(',')[0]"></a>
+                <a href="~/Concent/Index?id=@item.PCode"><img src="~/Common/images/@item.PImages.Split(',')[0]"></a>
                 <div class="product_text">
                     <h2>
                         <p>@item.PName</p>
@@ -70,7 +70,7 @@
                     <p>@item.PDescribe</p>
                     <h3>
                         <p><i>￥</i><b>@item.Price</b><span>特级</span><span>甄选</span></p>
-                        <a href="product_xq.html">立即购买</a>
+                        <a href="~/Concent/Index?id=@item.PCode">立即购买</a>
                     </h3>
                 </div>
             </li>
@@ -80,7 +80,7 @@
         @foreach (product item in ViewBag.Product as List<product>)
         {
             <li>
-                <a href="product_xq.html"><img src="~/Common/images/@item.PImages.Split(',')[0]"></a>
+                <a href="~/Concent/Index?id=@item.PCode"><img src="~/Common/images/@item.PImages.Split(',')[0]"></a>
                 <div class="product_text">
                     <h2>
                         <p>@item.PName</p>
@@ -89,7 +89,7 @@
                     <p>@item.PDescribe</p>
                     <h3>
                         <p><i>￥</i><b>@item.Price</b><span>特级</span><span>甄选</span></p>
-                        <a href="product_xq.html">立即购买</a>
+                        <a href="~/Concent/Index?id=@item.PCode">立即购买</a>
                     </h3>
                 </div>
             </li>
@@ -99,7 +99,7 @@
         @foreach (product item in ViewBag.NewTimeinfo as List<product>)
         {
             <li>
-                <a href="product_xq.html"><img src="~/Common/images/@item.PImages.Split(',')[0]"></a>
+                <a href="~/Concent/Index?id=@item.PCode"><img src="~/Common/images/@item.PImages.Split(',')[0]"></a>
                 <div class="product_text">
                     <h2>
                         <p>@item.PName</p>
@@ -108,7 +108,7 @@
                     <p>@item.PDescribe</p>
                     <h3>
                         <p><i>￥</i><b>@item.Price</b><span>@item.PTime</span><span>甄选</span></p>
-                        <a href="product_xq.html">立即购买</a>
+                        <a href="~/Concent/Index?id=@item.PCode">立即购买</a>
                     </h3>
                 </div>
             </li>

@@ -49,6 +49,7 @@ namespace WeChatMall.Controllers
                 {
                     SPcode = ProductID,
                     SNum = ProductNum,
+                    //SCid=Session["userInfo"]
                 };
                 //ProductResult.SPcode = ProductID;
                 //ProductResult.SNum = ProductNum;

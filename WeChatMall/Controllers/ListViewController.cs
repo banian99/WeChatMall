@@ -21,6 +21,9 @@ namespace WeChatMall.Controllers
             //根据时间排序
             var TimeProduct = ProductService.GetEntities(k => k.ProductSortId == ProId).OrderByDescending(x => x.PTime).Take(3);
             ViewBag.Timeinfo = TimeProduct.ToList();
+            //根据价格排序
+            var PriceProduct = ProductService.GetEntities(k => k.ProductSortId == ProId).OrderByDescending(x => x.Price).Take(3);
+            ViewBag.Priceinfo = PriceProduct.ToList();
             return View();
         }
     }

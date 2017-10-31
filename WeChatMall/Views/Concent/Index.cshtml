@@ -16,7 +16,7 @@
     <meta name="description" content="Free Web tutorials">
     <meta name="keywords" content="HTML,CSS,JavaScript">
     <meta content="telephone=no" name="format-detection">
-    <title>友意健康</title>
+    <title>HS_Concent</title>
     <link href="/Common/css/Cbase.css" type="text/css" rel="stylesheet">
     <link href="/Common/css/index.css" type="text/css" rel="stylesheet">
     <link href="/Common/css/swiper.min.css" type="text/css" rel="stylesheet">
@@ -35,17 +35,18 @@
         $(function () {
             $("#btn_click").click(function () {
                 var MyId = "@Request["id"]";
-                alert(MyId);
+                //alert(MyId);
                 $.ajax({
                     type: "post",
                     url: "@Url.Action("AddProduct","Concent")",
                     data: {"ProID":MyId,"Pnum":$("#num").val()},
                     success:function(data){
-                        alert(data);
+                        //alert(data);
                     }
                    
                 })
-                //alert("已加入购物车");
+                @*@Url.Action("Index", "ShopCard");*@
+
 
             })
         })
@@ -104,7 +105,7 @@
     </script>
     <!---banner over--->
     <div class="pro_standard">
-        <h2><span>选择商品规格/口味</span><img src="/Common/images/icon_015.png"></h2>
+        @*<h2><span>选择商品规格/口味</span><img src="/Common/images/icon_015.png"></h2>
         <div class="pro_stand">
             <dl>
                 <dt>食品口味</dt>
@@ -128,7 +129,7 @@
                 <dd>五香味</dd>
                 <dd>香辣味</dd>
             </dl>
-        </div>
+        </div>*@
         <div class="shu"><i>购买数量</i><span class="jia"><img src="/Common/images/icon_017.png"></span><input class="shopcart-td-num" type="text" value="1"  id="num"/><span class="jian"><img src="/Common/images/icon_016.png"></span></div>
     </div>
     <script>

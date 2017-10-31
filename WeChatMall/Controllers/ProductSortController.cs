@@ -18,7 +18,7 @@ namespace WeChatMall.Controllers
             string proud = 0.ToString();
             var ProductSortResult = ProductSortService.GetEntities(m => m.ProSorID == proud);
             ViewBag.ProductSort = ProductSortResult.ToList();
-            Session["Pro_sorId"] = ProductSortResult.ToList();
+            //Session["Pro_sorId"] = ProductSortResult.ToList();
             return View();
         }
         //二级菜单栏
@@ -27,13 +27,13 @@ namespace WeChatMall.Controllers
         {
 
               id = Request["mydata"]; 
-            if (id == null)
-            {
+            //if (id == null)
+            //{
 
-                IEnumerable<ProductSort> pro = Session["Pro_sorId"] as IEnumerable<ProductSort>;
-                ProductSort Pro_first = pro.FirstOrDefault(x => true);
-                id = Pro_first.ProID;
-            }
+            //    IEnumerable<ProductSort> pro = Session["Pro_sorId"] as IEnumerable<ProductSort>;
+            //    ProductSort Pro_first = pro.FirstOrDefault(x => true);
+            //    id = Pro_first.ProID;
+            //}
             var ProductSortNum = ProductSortService.GetEntities(k => k.ProSorID == id);
             ViewBag.ProductSortText = ProductSortNum.ToList();
             return PartialView();
